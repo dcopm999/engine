@@ -266,7 +266,7 @@ set_target_properties(gost_core PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_link_libraries(gost_core PRIVATE OpenSSL::Crypto)
 
 add_library(gost_engine SHARED ${GOST_ENGINE_SOURCE_FILES})
-set_target_properties(gost_engine PROPERTIES PREFIX "" OUTPUT_NAME "gost")
+set_target_properties(gost_engine PROPERTIES PREFIX "" OUTPUT_NAME "gost-astra")
 set_target_properties(gost_engine PROPERTIES VERSION ${GOST_SOVERSION} SOVERSION ${GOST_SOVERSION})
 target_link_libraries(gost_engine PRIVATE gost_core)
 
@@ -306,12 +306,12 @@ if (NOT CMAKE_SKIP_INSTALL_RULES)
   set(OPENSSL_MAN_INSTALL_DIR ${CMAKE_INSTALL_MANDIR}/man1)
   
   install(TARGETS gost_engine gostsum gost12sum EXPORT GostEngineConfig
-          LIBRARY  DESTINATION ${OPENSSL_ENGINES_DIR}
-          RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
+    LIBRARY  DESTINATION ${OPENSSL_ENGINES_DIR}
+    RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
   install(FILES gostsum.1 gost12sum.1 DESTINATION ${OPENSSL_MAN_INSTALL_DIR})
   if (MSVC)
-   install(FILES $<TARGET_PDB_FILE:gost_engine> DESTINATION ${OPENSSL_ENGINES_DIR} OPTIONAL)
-   install(FILES $<TARGET_PDB_FILE:gostsum> $<TARGET_PDB_FILE:gost12sum> DESTINATION   ${CMAKE_INSTALL_BINDIR} OPTIONAL)
+    install(FILES $<TARGET_PDB_FILE:gost_engine> DESTINATION ${OPENSSL_ENGINES_DIR} OPTIONAL)
+    install(FILES $<TARGET_PDB_FILE:gostsum> $<TARGET_PDB_FILE:gost12sum> DESTINATION   ${CMAKE_INSTALL_BINDIR} OPTIONAL)
   endif()
 endif()
 

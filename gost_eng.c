@@ -19,7 +19,7 @@
 
 #include "gost_grasshopper_cipher.h"
 
-static const char* engine_gost_id = "gost";
+static const char* engine_gost_id = "gost-astra";
 
 static const char* engine_gost_name =
         "Reference implementation of GOST engine";
